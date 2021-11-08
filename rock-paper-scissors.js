@@ -1,34 +1,76 @@
+/* Plays a 5 round game that keeps score and reports a winner or loser at 
+ * the end */
+function game() {
+    let numRounds = 5; 
+    let playerScore = 0; 
+    let computerScore = 0; 
 
-/* Plays a single round of Rock Paper Scissors */
+    for (i = 0; i < numRounds; i++) {
+        console.log(i);
+        // Get input from the user 
+        let playerSelection = window.prompt(`Enter your choice of Rock, Paper or Scissors`);
+        playerSelection = capitalize(playerSelection); // parse it into the expected format
+
+        // Get the computer selection
+        let computerSelection = computerPlay(); 
+        
+        // Play a single round
+        let result = playRound(playerSelection, computerSelection);
+
+        // Based on the result, increment the scores and print the appropriate message
+        if (result === `Draw`) {
+            console.log(`It's a draw! ${playerSelection} equals ${computerSelection}`);
+        } else if (result === `Player`) {
+            playerScore++;
+            console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+        } else if (result === `Computer`) {
+            computerScore++; 
+            console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+        } else {
+            console.log(`There was an error and the round could not be completed`);
+        }
+    }
+
+    // Print the overall outcome and scores
+    if (playerScore === computerScore) {
+        console.log(`After ${numRounds} rounds, it was a draw ${playerScore} to ${computerScore}!`);
+    } else if (playerScore > computerScore) {
+        console.log(`After ${numRounds} rounds, you won ${playerScore} to ${computerScore}!`);
+    } else {
+        console.log(`After ${numRounds} rounds, you lost ${playerScore} to ${computerScore}!`)
+    }
+}
+
+/* Plays a single round of Rock Paper Scissors.
+ * Returns a string representing either the winner or a draw */
 function playRound(playerSelection, computerSelection) {
-    // Parse the playerSelection into the expected format
-    playerSelection = capitalize(playerSelection);
-    
-    // Determine if the player won or not
-    let playerWon = false; 
+    // First check for a draw
+    if (playerSelection === computerSelection) {
+        return `Draw`; 
+    }
+
+    // If it's not a draw, determine the winner
     switch (playerSelection) {
         case `Rock`: 
             if (computerSelection === `Scissors`) {
-                playerWon = true;  
+                return `Player`; 
+            } else {
+                return `Computer`;
             }
-            break; 
         case `Paper`:
             if (computerSelection === `Rock`) {
-                playerWon = true;  
+                return `Player`
+            } else {
+                return `Computer`
             }
-            break; 
         case `Scissors`:
             if (computerSelection === `Paper`) {
-                playerWon = true;  
+                return `Player`
+            } else {
+                return `Computer`;
             }
-            break; 
-    }
-    
-    // Based on the outcome, return the appropriate message
-    if (playerWon) {
-        return `You Win! ${playerSelection} beats ${computerSelection}`;
-    } else {
-        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+        default: 
+            return undefined; 
     }
 }
 
