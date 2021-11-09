@@ -1,11 +1,11 @@
 /* Plays a 5 round game that keeps score and reports a winner or loser at 
  * the end */
 function game() {
-    let numRounds = 5; 
+    const numRounds = 5; 
     let playerScore = 0; 
     let computerScore = 0; 
 
-    for (i = 0; i < numRounds; i++) {
+    for (let i = 0; i < numRounds; i++) {
         console.log(i);
         // Get input from the user 
         let playerSelection = window.prompt(`Enter your choice of Rock, Paper or Scissors`);
