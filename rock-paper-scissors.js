@@ -6,7 +6,6 @@ function game() {
     let computerScore = 0; 
 
     for (let i = 0; i < numRounds; i++) {
-        console.log(i);
         // Get input from the user 
         let playerSelection = window.prompt(`Enter your choice of Rock, Paper or Scissors`);
         playerSelection = capitalize(playerSelection); // parse it into the expected format
