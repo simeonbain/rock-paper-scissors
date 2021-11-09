@@ -95,5 +95,9 @@ function getRandomInt(max) {
 /* Takes a string as input and returns the capitalized version of it 
  * (first character uppercase, subsequent characters lowercase) */
 function capitalize(string) {
-    return string[0].toUpperCase() + string.slice(1).toLowerCase(); 
+    if (string === ``) {
+        return string; 
+    }  else {
+        return string[0].toUpperCase() + string.slice(1).toLowerCase(); 
+    }
 }
