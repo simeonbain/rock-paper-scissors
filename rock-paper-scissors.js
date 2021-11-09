@@ -12,10 +12,10 @@ function game() {
         playerSelection = capitalize(playerSelection); // parse it into the expected format
 
         // Get the computer selection
-        let computerSelection = computerPlay(); 
+        const computerSelection = computerPlay(); 
         
         // Play a single round
-        let result = playRound(playerSelection, computerSelection);
+        const result = playRound(playerSelection, computerSelection);
 
         // Based on the result, increment the scores and print the appropriate message
         if (result === `Draw`) {
