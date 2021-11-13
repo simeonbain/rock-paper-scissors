@@ -1,4 +1,4 @@
-/* Plays a 5 round game that keeps score and reports a winner or loser at 
+/* Plays a game that keeps score and reports a winner or loser at 
  * the end */
 function game() {
 
@@ -85,3 +85,12 @@ function capitalize(string) {
         return string[0].toUpperCase() + string.slice(1).toLowerCase(); 
     }
 }
+
+const buttons = document.querySelectorAll(`button`); 
+buttons.forEach((button) => {
+    button.addEventListener(`click`, () => {
+        const playerSelection = capitalize(button.dataset.selection);
+        const computerSelection = computerPlay(); 
+        console.log(playRound(playerSelection, computerSelection));
+    }); 
+});
