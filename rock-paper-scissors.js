@@ -1,42 +1,26 @@
 /* Plays a 5 round game that keeps score and reports a winner or loser at 
  * the end */
 function game() {
-    const numRounds = 5; 
-    let playerScore = 0; 
-    let computerScore = 0; 
 
-    for (let i = 0; i < numRounds; i++) {
-        // Get input from the user 
-        let playerSelection = window.prompt(`Enter your choice of Rock, Paper or Scissors`);
-        playerSelection = capitalize(playerSelection); // parse it into the expected format
+    // Get input from the user 
+    let playerSelection = window.prompt(`Enter your choice of Rock, Paper or Scissors`);
+    playerSelection = capitalize(playerSelection); // parse it into the expected format
 
-        // Get the computer selection
-        const computerSelection = computerPlay(); 
-        
-        // Play a single round
-        const result = playRound(playerSelection, computerSelection);
+    // Get the computer selection
+    const computerSelection = computerPlay(); 
+    
+    // Play a single round
+    const result = playRound(playerSelection, computerSelection);
 
-        // Based on the result, increment the scores and print the appropriate message
-        if (result === `Draw`) {
-            console.log(`It's a draw! ${playerSelection} equals ${computerSelection}`);
-        } else if (result === `Player`) {
-            playerScore++;
-            console.log(`You win! ${playerSelection} beats ${computerSelection}`);
-        } else if (result === `Computer`) {
-            computerScore++; 
-            console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
-        } else {
-            console.log(`There was an error and the round could not be completed`);
-        }
-    }
-
-    // Print the overall outcome and scores
-    if (playerScore === computerScore) {
-        console.log(`After ${numRounds} rounds, it was a draw ${playerScore} to ${computerScore}!`);
-    } else if (playerScore > computerScore) {
-        console.log(`After ${numRounds} rounds, you won ${playerScore} to ${computerScore}!`);
+    // Based on the result, increment the scores and print the appropriate message
+    if (result === `Draw`) {
+        console.log(`It's a draw! ${playerSelection} equals ${computerSelection}`);
+    } else if (result === `Player`) {
+        console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+    } else if (result === `Computer`) { 
+        console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
     } else {
-        console.log(`After ${numRounds} rounds, you lost ${playerScore} to ${computerScore}!`)
+        console.log(`There was an error and the round could not be completed`);
     }
 }
 
