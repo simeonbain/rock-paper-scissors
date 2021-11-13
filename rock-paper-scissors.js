@@ -1,10 +1,6 @@
 /* Plays a game that keeps score and reports a winner or loser at 
  * the end */
-function game() {
-
-    // Get input from the user 
-    let playerSelection = window.prompt(`Enter your choice of Rock, Paper or Scissors`);
-    playerSelection = capitalize(playerSelection); // parse it into the expected format
+function game(playerSelection) {
 
     // Get the computer selection
     const computerSelection = computerPlay(); 
@@ -12,15 +8,15 @@ function game() {
     // Play a single round
     const result = playRound(playerSelection, computerSelection);
 
-    // Based on the result, increment the scores and print the appropriate message
+    // Based on the result show the appropriate message
     if (result === `Draw`) {
-        console.log(`It's a draw! ${playerSelection} equals ${computerSelection}`);
+        showResult(`It's a draw! ${playerSelection} equals ${computerSelection}`);
     } else if (result === `Player`) {
-        console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+        showResult(`You win! ${playerSelection} beats ${computerSelection}`);
     } else if (result === `Computer`) { 
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+        showResult(`You lose! ${computerSelection} beats ${playerSelection}`);
     } else {
-        console.log(`There was an error and the round could not be completed`);
+        showResult(`There was an error and the round could not be completed`);
     }
 }
 
@@ -76,21 +72,18 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-/* Takes a string as input and returns the capitalized version of it 
- * (first character uppercase, subsequent characters lowercase) */
-function capitalize(string) {
-    if (string === ``) {
-        return string; 
-    }  else {
-        return string[0].toUpperCase() + string.slice(1).toLowerCase(); 
-    }
-}
+/* Shows the result on the UI */
+function showResult(result) {
+    resultOutput.textContent = result; 
+} 
 
+/* Query selectors */
 const buttons = document.querySelectorAll(`button`); 
+const resultOutput = document.querySelector(`.result`);
+
+/* Event listeners */
 buttons.forEach((button) => {
-    button.addEventListener(`click`, () => {
-        const playerSelection = capitalize(button.dataset.selection);
-        const computerSelection = computerPlay(); 
-        console.log(playRound(playerSelection, computerSelection));
-    }); 
+    button.addEventListener(`click`, () => { game(button.dataset.selection) });
 });
+
+
